@@ -1,57 +1,31 @@
 import { useEffect, useState } from 'react';
+import { getRandomPokemon, getPokemon, getPokemonTypes } from './pokeFetchFn';
 
 function Game() {
-  const getRandomPokemon = async () => {
-    try {
-      const pokemonsFetch = await fetch('https://pokeapi.co/api/v2/pokemon');
-      const pokemons = await pokemonsFetch.json();
-      const randomNumber = Math.floor(Math.random() * 20);
-      const randomPokemon = pokemons.results[randomNumber];
-      return randomPokemon;
-    } catch (err) {
-      console.error(err);
-    }
-  };
-  getRandomPokemon();
-  // let pokemon = useRef('');
   const [pokemon, setPokemon] = useState(false);
-  useEffect(() => {
-    const fetchPokemon = async () => {
-      try {
-        const name = await getRandomPokemon();
-        const pokemonFetch = await fetch(
-          `https://pokeapi.co/api/v2/pokemon/${name.name}`
-        );
-        const pokemonToSet = await pokemonFetch.json();
-        setPokemon(pokemonToSet);
-        console.log(pokemon.sprites.front_default);
-        return pokemon;
-      } catch (err) {
-        console.log(err);
-      }
+  const [pokemonType, setPokemonType] = useState(false);
+  const [questionNumber, setQuestionNumber] = useState(1);
+  // useEffect(() => {
+    const buildLevel = async () => {
+      // get pokemon data
+      const randomPokemonRes = await getRandomPokemon();
+      const pokemon = await getPokemon(randomPokemonRes[0].name);
+      console.log(pokemon);
+      setPokemon(pokemon);
+
+      // get type data
+      // const pokemonTypeRes = await getPokemonTypes();
+      // setPokemonType(pokemonTypeRes);
+      // console.log(pokemonType);
     };
-    fetchPokemon();
-    
-    const getRandomOptions = async () => {
-      try {
-        let options = []
-        for(let i = 0; i <= 3; i++){
-          const typeRes = await fetch('https://pokeapi.co/api/v2/type');
-          const type = await typeRes.json();
-          console.log(type)
-        }
-      } catch (err) {
-        console.log(err);
-      }
-    };
-  }, []);
+    buildLevel();
+  }, [pokemon, pokemonType, questionNumber]);
   return (
     <div className='box'>
       <h1>PokeTypes</h1>
       <p>Guess the type of this pokemon</p>
       <div className='gameBox'>
         <div className='sprites'>
-          {console.log(pokemon)}
           {pokemon !== false && (
             <div>
               <img src={pokemon.sprites.front_default} alt='' />
@@ -67,8 +41,6 @@ function Game() {
               // console.log(ability.ability.name, 45555)
               return <div>{ability.ability.name}</div>;
             })}
-
-          {console.log(pokemon.abilities)}
         </div>
       </div>
       <div className='options'></div>
