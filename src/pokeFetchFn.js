@@ -21,6 +21,7 @@ export async function getPokemonTypes() {
     );
     const type = await typeRaw.json();
     if (type.results) {
+      // console.log(type.results)
       return type.results;
     }
   } catch (err) {

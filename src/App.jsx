@@ -10,7 +10,7 @@ function App() {
         <div className='box'>
           <h3>Pokemon type guessing quiz</h3>
           <ul>
-            <li>you have 1 minute</li>
+            <li>you have 8 minute</li>
             <li>get as many correct as you can</li>
           </ul>
           <Link to='/game'>

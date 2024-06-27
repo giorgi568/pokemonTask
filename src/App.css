@@ -1,20 +1,29 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1rem;
   display: flex;
   justify-content: center;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .box {
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
   gap: 20px;
   background-color: #191626;
   padding: 20px;
   border-radius: 20px;
+  width: 350px;
+  text-align: left;
+  font-weight: 300;
+}
+.sprites {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 .mainWrapper {
   display: flex;
@@ -22,19 +31,140 @@
   align-items: center;
   gap: 50px;
 }
-h3 {
+h3,
+h4,
+h1 {
   margin: 0;
+}
+p {
+  text-align: justify;
+}
+.guess {
+  font-size: 1.3rem;
+  font-weight: 300;
 }
 ul {
   margin: 0;
 }
 button {
   color: white;
-  border-radius: 10px;
+  border-radius: 5px;
   padding: 10px 20px;
   box-shadow: none;
   border: none;
   font-size: 1.2rem;
   cursor: pointer;
-  background-color: #342E59;
+  background-color: #342e59;
+  font-family: inherit;
+  font-weight: 300;
+}
+button:hover {
+  background-color: #2f2850;
+  /* font-size: 3rem; */
+}
+.options {
+  box-sizing: border-box;
+  display: flex;
+  gap: 20px;
+  width: 350px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+.options > button {
+  width: 47%;
+}
+.info {
+  display: flex;
+  justify-content: space-between;
+  width: 350px;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.pokeImg {
+  width: 150px;
+}
+
+h4 {
+  font-size: 1.1rem;
+  font-weight: inherit;
+}
+.abilitiesWrapper {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+.abilitiesWrapper > div {
+  background-color: #342e59;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 0.9rem;
+}
+.name {
+  font-size: 1.7rem;
+  font-weight: inherit;
+}
+.sprites {
+  min-width: 300px;
+  min-height: 160px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.timer {
+  display: flex;
+  gap: 10px;
+}
+.info > div {
+  font-weight: 300;
+}
+
+.result {
+  background-color: #191626;
+  height: fit-content;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  --uib-size: 40px;
+  --uib-color: black;
+  --uib-speed: 0.8s;
+  --uib-bg-opacity: 0.1;
+  height: var(--uib-size);
+  width: var(--uib-size);
+  transform-origin: center;
+  animation: rotate var(--uib-speed) linear infinite;
+  will-change: transform;
+  overflow: visible;
+}
+
+.car {
+  fill: none;
+  stroke: #8C7DE7;
+  stroke-dasharray: 25, 75;
+  stroke-dashoffset: 0;
+  stroke-linecap: round;
+  transition: stroke 0.5s ease;
+}
+
+.track {
+  fill: none;
+  stroke: #D5CFEB;
+  opacity: var(--uib-bg-opacity);
+  transition: stroke 0.5s ease;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
 }
