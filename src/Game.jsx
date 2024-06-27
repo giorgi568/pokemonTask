@@ -5,8 +5,9 @@ function Game() {
   const [pokemon, setPokemon] = useState(false);
   const [pokemonType, setPokemonType] = useState(false);
   const [questionNumber, setQuestionNumber] = useState(1);
-  // useEffect(() => {
-    const buildLevel = async () => {
+
+  useEffect(() => {
+    (async () => {
       // get pokemon data
       const randomPokemonRes = await getRandomPokemon();
       const pokemon = await getPokemon(randomPokemonRes[0].name);
@@ -14,12 +15,13 @@ function Game() {
       setPokemon(pokemon);
 
       // get type data
-      // const pokemonTypeRes = await getPokemonTypes();
-      // setPokemonType(pokemonTypeRes);
-      // console.log(pokemonType);
-    };
-    buildLevel();
-  }, [pokemon, pokemonType, questionNumber]);
+      const pokemonTypeRes = await getPokemonTypes();
+      setPokemonType(pokemonTypeRes);
+      console.log(pokemonType);
+    })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [questionNumber]);
+
   return (
     <div className='box'>
       <h1>PokeTypes</h1>
@@ -37,9 +39,8 @@ function Game() {
         <div className='abilities'>
           <h4>Abilities</h4>
           {pokemon !== false &&
-            pokemon.abilities.forEach((ability) => {
-              // console.log(ability.ability.name, 45555)
-              return <div>{ability.ability.name}</div>;
+            pokemon.abilities.map((ability, index) => {
+              return <div key={index}>{ability.ability.name}</div>;
             })}
         </div>
       </div>

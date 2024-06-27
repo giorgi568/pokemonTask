@@ -1,6 +1,6 @@
 export async function getRandomPokemon() {
   try {
-    const randomNum = Math.floor(Math.random * 1000);
+    const randomNum = Math.floor(Math.random() * 1000);
     const pokemonRaw = await fetch(
       `https://pokeapi.co/api/v2/pokemon?limit=1&offset=${randomNum}`
     );
@@ -15,7 +15,7 @@ export async function getRandomPokemon() {
 
 export async function getPokemonTypes() {
   try {
-    const randomNum = Math.floor(Math.random * 16);
+    const randomNum = Math.floor(Math.random() * 16);
     const typeRaw = await fetch(
       `https://pokeapi.co/api/v2/type?limit=4&offset=${randomNum}`
     );
